@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bac a Sable{% endblock %}
+
+{% block body %}
+
+{% include 'inc/horizontalNav.html.twig' %}
+  <main>
+    <h1 class="text-center">{{league.nom}}</h1>
+            {% if inscrit == FALSE %}
+            <div class="text-center">
+            <a href="{{ path('app_league_signup', {'id': league.id})}}" class="text-center btn btn-outline-success rounded-pill px-5" type="button">S'inscrire</a>
+            </div>
+            {% endif %}
+            <div class="mt-3 card text-bg-light bg-primary" style="height:200px;background-image:url({{ asset("images/pikachu.jpg") }});background-size:cover; ">
+            <div class="card-img-overlay text-end">
+            </div>
+            </div>
+    <ul class="nav nav-pills nav-justified mt-3">
+        <li class="nav-item">
+            <a href="{{ path('app_league_show', {'id': league.id})}}" class="btn btn-info rounded-pill px-5" type="button">Classement</a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ path('app_league_incoming_matches', {'id': league.id})}}" class="btn btn-outline-info rounded-pill px-5" type="button">Matchs</a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ path('app_league_rules', {'id': league.id})}}" class="btn btn-outline-info rounded-pill px-5" type="button">Règles</a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ path('app_league_rewards', {'id': league.id})}}" class="btn btn-outline-info rounded-pill px-5" type="button">Récompenses</a>
+        </li>
+    </ul>
+    <h2 class="text-center mt-5 font-weight-bold">Classement Générale</h2>
+
+<table class="table table-primary mt-5">
+  <thead>
+    <tr>
+      <th scope="col">Rang</th>
+      <th scope="col">Nom de l'équipe</th>
+      <th scope="col">MJ</th>
+      <th scope="col">V</th>
+      <th scope="col">D</th>
+      <th scope="col">PTS</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    {% for classement in classements  %}
+    <tr>
+      <th scope="row">1</th>
+      <td>{{ classement.equipe.nom }}</td>
+      <td>{{ classement.MP }}</td>
+      <td>{{ classement.W }}</td>
+      <td>{{ classement.L }}</td>
+      <td>{{ classement.Pts }}</td>
+    </tr>
+    {% else %}
+    <tr><td colspan="6">Aucune équipe n'est inscrite pour le moment</td></tr>
+    {% endfor %}
+
+  </tbody>
+</table>
+  </main>
+
+{% include 'inc/footer.html.twig' %}
+
+{% endblock %}

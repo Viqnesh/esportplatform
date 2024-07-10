@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tribunal{% endblock %}
+
+{% block body %}
+    <h1>Tribunal</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ tribunal.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_tribunal_index') }}">back to list</a>
+
+    <a href="{{ path('app_tribunal_edit', {'id': tribunal.id}) }}">edit</a>
+
+    {{ include('tribunal/_delete_form.html.twig') }}
+{% endblock %}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Bac a Sable{% endblock %}
+
+{% block body %}
+
+{% include 'inc/horizontalNav.html.twig' %}
+  <main>
+    <h1>ZNO</h1>
+
+  </main>
+
+{% include 'inc/footer.html.twig' %}
+
+{% endblock %}

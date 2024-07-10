@@ -1,0 +1,136 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bac a Sable{% endblock %}
+
+{% block body %}
+
+{% include 'inc/horizontalNav.html.twig' %}
+  <main>
+    <h1 class="text-center">{{league.nom}}</h1>
+            <div class="mt-3 card text-bg-light bg-primary" style="height:200px;background-image:url({{ asset("images/pikachu.jpg") }});background-size:cover; ">
+            <div class="card-img-overlay text-end">
+            </div>
+            </div>
+    <ul class="nav nav-pills nav-justified mt-3">
+        <li class="nav-item">
+            <a href="{{ path('app_league_show', {'id': league.id})}}" class="btn btn-outline-info rounded-pill px-5" type="button">Classement</a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ path('app_league_rules', {'id': league.id})}}" class="btn btn-info rounded-pill px-5" type="button">Matchs</a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ path('app_league_rules', {'id': league.id})}}" class="btn btn-outline-info rounded-pill px-5" type="button">Règles</a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ path('app_league_rewards', {'id': league.id})}}" class="btn btn-outline-info rounded-pill px-5" type="button">Récompenses</a>
+        </li>
+    </ul>
+    <h2 class="text-center mt-5 font-weight-bold">Derniers Résultats</h2>
+    <div class="my-3 p-3 bg-body rounded shadow-sm">
+    {% for match in matches %}
+                    <div class="d-flex justify-content-center text-muted pt-3">
+                        <p class=" text-center">{{match.equipeA.nom}} <p class="fw-bold">{{match.score}}</p> {{match.equipeB.nom}}</p>
+                    </div>
+    {% else %}
+                <div class="my-3 p-3 bg-body rounded shadow-sm">
+                    <div class="d-flex text-muted pt-3">
+                        <table class="table">
+                        <thead>
+                            <tr>
+                            <th scope="col">Heure</th>
+                            <th scope="col">Mode de Jeu</th>
+                            <th scope="col">Joueur</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                        <td>
+                            <p class="pb-3 mb-0 small lh-sm">
+                                <strong class="d-block text-gray-dark">
+                                    Aucun Match pour le moment
+                                </strong>
+                            </p>
+                        </td>
+                        </tr>
+                        </tbody>
+                        </table>
+                    </div>
+                </div>
+    {% endfor %}
+    </div>
+
+    <h2 class="mt-5 text-center">Match Disponibles</h2>
+        {% if inscrit == TRUE %}
+        <div class="mt-5 mb-5">
+            <a class="btn btn-primary btn-lg px-4" href="{{ path('app_challenge_new', {'id': league.id}) }}">Créer un match</a>
+        </div>
+        {% else %}
+            <span class="badge text-bg-primary mb-3 mt-3">Vous devez vous inscrire pour créer un match</span>
+        {% endif %} 
+    {% for challenge in availableMatches %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Heure</th>
+                        <th>Mode</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+            <tbody>
+                <tr>
+                    <td>{{ challenge.id }}</td>
+                    <td>{{ challenge.Heure ? challenge.Heure|date('H:i:s') : '' }}</td>
+                    <td>{{ challenge.Mode }}</td>
+                    <td>
+                        {% if app.user == challenge.User %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-patch-check-fill disabled" viewBox="0 0 16 16">
+                        <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z"/>
+                        </svg>
+                        {% else %}
+                            {% if inscrit == FALSE %}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-patch-check-fill disabled" viewBox="0 0 16 16">
+                                <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z"/>
+                                </svg>
+                            {% else %}
+                                <a href="{{ path('app_accept_challenge', {'id': challenge.id}) }}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-patch-check-fill" viewBox="0 0 16 16">
+                                <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z"/>
+                                </svg></a>
+                            {% endif %}
+                        {% endif %}
+         
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    {% else %}
+                <div class="my-3 p-3 bg-body rounded shadow-sm">
+                    <div class="d-flex text-muted pt-3">
+                        <table class="table">
+                        <thead>
+                            <tr>
+                            <th scope="col">Heure</th>
+                            <th scope="col">Mode de Jeu</th>
+                            <th scope="col">Joueur</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                        <td>
+                            <p class="pb-3 mb-0 small lh-sm">
+                                <strong class="d-block text-gray-dark">
+                                    Aucun Match pour le moment
+                                </strong>
+                            </p>
+                        </td>
+                        </tr>
+                        </tbody>
+                        </table>
+                    </div>
+                </div>
+    {% endfor %}
+  </main>
+
+{% include 'inc/footer.html.twig' %}
+
+{% endblock %}

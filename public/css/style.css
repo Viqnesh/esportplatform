@@ -1,0 +1,74 @@
+@font-face {
+	font-family: 'Conversi';
+	src: url('../fonts/Abel-Regular.ttf');
+}
+body {
+    cursor : help;
+}
+.titi {
+    font-family: 'Conversi';
+}
+.tooltip {
+    background-image: url('../images/box.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 800px;
+    height: 800px;
+}
+.tooltip > .tooltip-inner {
+    background-color: transparent;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3%;
+    margin-bottom: auto;
+    font-weight: 900 ;
+    font-family: 'Conversi';
+    font-size: 25px;
+    width: 100%;
+}
+.tooltip-title {
+    font-weight: 900;
+    width: max-content;
+}
+.tooltip-arrow {
+    opacity: 0;
+}
+.hero-title {
+    font-size: 60px!important;
+}
+
+.hero-desc {
+    font-size: 45px !important;
+}
+.description {
+    font-size: 35px !important;
+}
+.b-example-divider {
+    height: 3rem;
+    background-color: rgba(0, 0, 0, .1);
+    border: solid rgba(0, 0, 0, .15);
+    border-width: 1px 0;
+    box-shadow: inset 0 0.5em 1.5em rgba(0, 0, 0, .1), inset 0 0.125em 0.5em rgba(0, 0, 0, .15);
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+.title-font {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 1%;
+    font-family: 'Poppins', sans-serif;
+    font-size: 64px;
+    font-weight: 400;
+    color: #fff;
+    letter-spacing: normal;
+    text-transform: uppercase;
+    line-height: 64px;
+    letter-spacing: 1.33px;
+    text-shadow: 0 0 4px #000;
+}
+
+.titlePoppins {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+}

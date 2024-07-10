@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Classement index{% endblock %}
+
+{% block body %}
+    <h1>Classement index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>MP</th>
+                <th>W</th>
+                <th>L</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for classement in classements %}
+            <tr>
+                <td>{{ classement.id }}</td>
+                <td>{{ classement.MP }}</td>
+                <td>{{ classement.W }}</td>
+                <td>{{ classement.L }}</td>
+                <td>
+                    <a href="{{ path('app_classement_show', {'id': classement.id}) }}">show</a>
+                    <a href="{{ path('app_classement_edit', {'id': classement.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_classement_new') }}">Create new</a>
+{% endblock %}

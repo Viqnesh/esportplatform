@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bac a Sable{% endblock %}
+
+{% block body %}
+
+{% include 'inc/horizontalNav.html.twig' %}
+  <main>
+
+<div class="my-3 p-3 bg-body rounded shadow-sm">
+    <h4 class="border-bottom text-center pb-2 mb-0">Thread Tribunal du Match {{topic.tribunal.fixedMatch.equipeA.nom}} vs {{topic.tribunal.fixedMatch.equipeB.nom}}</h4>
+    {% for thread in messages %}
+    <div class="d-flex text-body-secondary pt-3">
+        <img class="bd-placeholder-img flex-shrink-0 me-2 rounded" src="{{ asset('images/charizard.png') }}" width="200" height="200">
+      <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
+        <div class="d-flex justify-content-between">
+          <h6 class="m-3 text-gray-dark">BOT</h6>
+        </div>
+        <p class="d-block m-3">Le match est en arbitrage, les deux équipes doivent fournir des preuves.</p>
+      </div>
+    </div>
+    {% endfor %}
+
+  </div>
+
+
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ topic.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_topic_index') }}">back to list</a>
+
+    <a href="{{ path('app_topic_edit', {'id': topic.id}) }}">edit</a>
+
+    {{ include('topic/_delete_form.html.twig') }}
+  </main>
+
+{% include 'inc/footer.html.twig' %}
+
+{% endblock %}

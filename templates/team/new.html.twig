@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle Equipe{% endblock %}
+
+{% block body %}
+
+{% include 'inc/horizontalNav.html.twig' %}
+  <main>
+    <h1>ZNO</h1>
+    {{ include('team/_form.html.twig') }}
+
+    <a class="btn btn-primary mt-3" href="{{ path('app_team_index') }}">Revenir en Arrière</a>
+  </main>
+
+{% include 'inc/footer.html.twig' %}
+
+{% endblock %}

@@ -1,0 +1,29 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Bac a Sable{% endblock %}
+
+{% block body %}
+
+{% include 'inc/horizontalNav.html.twig' %}
+
+
+  <main>
+    <h1>Créer un Challenge</h1>
+    <p class="fs-5 col-md-8">
+    {{ include('challenge/_form.html.twig') }}
+
+    </p>
+
+    <div class="mb-5">
+        <a class="btn btn-primary btn-lg px-4" href="{{ path('app_challenge_index') }}">Revenir en Arrière</a>
+    </div>
+  </main>
+
+{% include 'inc/footer.html.twig' %}
+
+
+
+
+{% endblock %}
+

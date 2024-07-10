@@ -1,0 +1,43 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Bac a Sable{% endblock %}
+
+{% block body %}
+
+{% include 'inc/horizontalNav.html.twig' %}
+  <main>
+    <h1 class="text-center">{{ team.nom }}</h1>
+    <div class="mt-3 card text-bg-light bg-primary" style="height:200px;background-image:url({{ asset("images/pokemon.jpg") }});background-size:cover; ">
+        <div class="card-img-overlay text-end">
+        </div>
+    </div>
+
+    <ul class="nav nav-pills nav-justified mt-3">
+        <li class="nav-item">
+            <a href="" class="btn btn-info rounded-pill px-5" type="button">Infos Génerales</a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ path('app_team_show_matches', {'id': team.id}) }}" class="btn btn-outline-info rounded-pill px-5" type="button">Matchs</a>
+        </li>
+        <li class="nav-item">
+            <a href="" class="btn btn-outline-info rounded-pill px-5" type="button">Suppression</a>
+        </li>
+        <li class="nav-item">
+            <a href="" class="btn btn-outline-info rounded-pill px-5" type="button">Armoires</a>
+        </li>
+    </ul>
+
+
+    <div class="col-12 mt-5">
+        <p>Nom de l'équipe : {{team.nom}} </p>
+        <p>Victoires Totales : {{team.w}} </p>
+        <p>Défaites Totales : {{team.l}} </p>
+        <p>Pièces :</p>
+        <p>EXP : </p>
+    </div>
+  </main>
+
+{% include 'inc/footer.html.twig' %}
+
+{% endblock %}

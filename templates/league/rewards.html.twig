@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bac a Sable{% endblock %}
+
+{% block body %}
+
+{% include 'inc/horizontalNav.html.twig' %}
+  <main>
+    <h1 class="text-center">{{league.nom}}</h1>
+            <div class="mt-3 card text-bg-light bg-primary" style="height:200px;background-image:url({{ asset("images/pikachu.jpg") }});background-size:cover; ">
+            <div class="card-img-overlay text-end">
+            </div>
+            </div>
+    <ul class="nav nav-pills nav-justified mt-3">
+        <li class="nav-item">
+            <a href="{{ path('app_league_show', {'id': league.id})}}" class="btn btn-outline-info rounded-pill px-5" type="button">Classement</a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ path('app_league_incoming_matches', {'id': league.id})}}" class="btn btn-outline-info rounded-pill px-5" type="button">Matchs</a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ path('app_league_rules', {'id': league.id})}}" class="btn btn-outline-info rounded-pill px-5" type="button">Règles</a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ path('app_league_rewards', {'id': league.id})}}" class="btn btn-info rounded-pill px-5" type="button">Récompenses</a>
+        </li>
+    </ul>
+
+    <h2 class="text-center mt-5 font-weight-bold">Récompenses</h2>
+    <div class="col-12 d-inline-flex">
+    {% for reward in rewards %}
+    <div class="col-4 text-center text-body-secondary pt-3">
+        <img src="{{ asset("images/ranking/Master.png") }}" width="100">
+        <p class="pb-3 small" >
+        <h4 style="margin-bottom:auto;margin-top:auto;margin-left:2%;font-weight:900;" class="text-gray-dark"> {{reward.libelle}} </h4>
+        </p>
+    </div>
+    {% else %}
+        <tr>
+            <td colspan="2">no records found</td>
+        </tr>
+    {% endfor %}
+    </div>
+  </main>
+
+{% include 'inc/footer.html.twig' %}
+
+{% endblock %}

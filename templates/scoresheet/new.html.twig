@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bac a Sable{% endblock %}
+
+{% block body %}
+
+{% include 'inc/horizontalNav.html.twig' %}
+
+    <h1> Saisir le Score </h1>
+
+    {{ include('scoresheet/_form.html.twig') }}
+
+    <a href="{{ path('app_scoresheet_index') }}">back to list</a>
+
+{% include 'inc/footer.html.twig' %}
+
+{% endblock %}

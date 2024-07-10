@@ -1,0 +1,20 @@
+<header class="p-3" style="background-color: #1d2029;">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+        </a>
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            <li><a href="{{ path('app_main') }}" class="nav-link titi link-light px-2 active" aria-current="page">Accueil</a></li>
+            <li><a class="titi nav-link px-2 text-white" href="{{path('app_tribunal_index')}}">Tribunal</a></li>
+            <li><a class="titi nav-link px-2 text-white" href="{{path('app_league_index')}}">Ligue</a></li>
+        </ul>
+
+        <div class="text-end titi">
+          <a href="{{ path('app_login') }}" type="button" class="btn btn-outline-light titi me-2">S'identifier</a>
+          <a href="{{ path('app_register') }}"  type="button" class="btn btn-light titi">S'inscrire</a>
+        </div>
+      </div>
+    </div>
+  </header>

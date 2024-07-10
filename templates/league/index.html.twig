@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bac a Sable{% endblock %}
+
+{% block body %}
+
+{% include 'inc/horizontalNav.html.twig' %}
+  <main style="background-color: #1d2029;background-position:center;">
+    <img src="{{ asset("images/ladder.jpeg") }}" width="100%">
+        <h1 class="text-center hero-title titi mt-5 p-1 text-white fs-bold"> La Ligue </h1>
+
+        <div class="row p-5 justify-content-center">
+        {% for league in leagues %}
+        <div class="col m-3 p-5 d-flex align-items-start">
+        <div id="example" class="card shadow" style="background-color:#1d2029;margin-left:auto;margin-right:auto;" data-bs-placement="bottom" data-toggle="tooltip" data-bs-html="true" data-bs-title="<div class='els text-dark fs-bold'><h3 class='titi tooltip-title'>{{league.nom}}</h3><p>Equipes Max : {{league.nbEquipesMax}}</p> <p>Equipes Inscrites : </p> <p> Leader : </p><p>Date de clôture</p></div>">
+        <div class=" card-body d-inline-flex card-body align-items-center justify-content-center flex-shrink-0 ">
+            <img src="{{ asset("images/league/"~league.id~".png") }}" width="190">
+        </div>
+        </div>
+        </div>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </div>
+  </main>
+
+{% include 'inc/footer.html.twig' %}
+<script>            $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();   
+            });    </script>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bac a Sable{% endblock %}
+
+{% block body %}
+
+{% include 'inc/horizontalNav.html.twig' %}
+  <main style="background : url({{ asset("images/homepage/loading.jpg") }});background-position:center;">
+    
+    <h1 class="text-center hero-title titi p-1 text-white fs-bold"> Le Tribunal </h1>
+
+<div class="m-5 p-3 bg-body shadow-sm">
+    <h6 class="border-bottom pb-2 titi mb-0">Arbitrages Récents</h6>
+
+    {% for tribunal in tribunals %}
+    <div class="d-flex text-body-secondary mb-5 p-3">
+      <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#007bff"></rect><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg>
+      <p class="pb-3 mb-0 small lh-sm border-bottom">
+        <strong class="d-block text-gray-dark"> <a href="{{ path('app_topic_show', {'id': tribunal.topic.id}) }}">Match #{{ tribunal.id }} : {{ tribunal.fixedMatch.equipeA.nom }} vs  {{ tribunal.fixedMatch.equipeB.nom }}  </a>  </strong>
+        Les scores rentrés par les deux équipes ne sont pas identiques.
+      </p>
+    </div>
+    {% else %}
+    <div class="d-flex text-body-secondary m-3">
+        <tr>
+            <td colspan="2">no records found</td>
+        </tr>
+    </div>
+    {% endfor %}
+
+  </div>
+  </main>
+
+{% include 'inc/footer.html.twig' %}
+
+{% endblock %}

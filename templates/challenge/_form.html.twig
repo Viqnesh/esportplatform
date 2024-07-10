@@ -1,0 +1,21 @@
+{{ form_start(form) }}
+    <div class="my-custom-class-for-errors">
+        {{ form_errors(form) }}
+    </div>
+
+    <div class="row">
+        <div class="mb-3 row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">{{ form_label(form.Heure) }}</label>
+            <div class="col-sm-10">
+            {{ form_widget(form.Heure) }}
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">{{ form_label(form.Mode) }}</label>
+            <div class="col-sm-10">
+            {{ form_widget(form.Mode) }}
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-primary btn-lg px-4 mt-4">{{ button_label|default('Créer') }}</button>
+{{ form_end(form) }}

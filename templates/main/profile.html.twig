@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bac a Sable{% endblock %}
+
+{% block body %}
+
+{% include 'inc/horizontalNav.html.twig' %}
+  <main>
+    <h1>PROFILE</h1>
+    <p class="fs-5 col-md-8">zno zno zno zno zno zno zno zno zno zno zno zno zno zno zno zno zno zno zno zno zno zno zno</p>
+
+    <div class="mb-5">
+      <a href="../examples/" class="btn btn-primary px-4">ZNO ZNO ZNO ZNO</a>
+    </div>
+
+    <hr class="col-3 col-md-2 mb-5">
+
+    <div class="row g-5">
+      <div class="col-md-6">
+        <h2>Mon Equipe</h2>
+             {% if app.user.equipe is null %}
+                <a href="{{path('app_team_new')}}" class="btn btn-primary mt-3 mb-3">Créer une équipe</a>
+            {% else %}
+                {{app.user.equipe.nom}}
+                <div>
+                    <a href="{{path('app_team_show', { 'id': app.user.equipe.id })}}" class="btn btn-primary mt-3 mb-3">Mes Ligues</a>
+                </div>
+             {% endif %}
+      </div>
+      <div class="col-md-6">
+        <h2>Mes Matchs Fixés</h2>
+        {% if fixedMatchA is empty and fixedMatchB is empty %}
+            <p>zno zno zno zno zno zno zno zno zno zno zno zno zno zno zno zno zno zno zno zno zno zno zno zno</p>
+        {% else %}
+            {% for match in fixedMatchA %}
+                <p>
+                    #{{ match.id }} : {{ match.equipeA.nom }} vs {{ match.equipeB.nom }} : 
+                    
+                    <a href="{{path('app_scoresheet_team_new', { 'id': match.id })}}">
+                        Saisir le Score
+                    </a>
+                </p>
+            {% endfor %}
+            {% for match in fixedMatchB %}
+                <p>#{{ match.id }} : {{ match.equipeA.nom }} vs {{ match.equipeB.nom }} : <a href="{{path('app_scoresheet_team_new', { 'id': match.id })}}">Saisir le Score</a> </p>
+            {% endfor %}
+        {% endif %}
+        <ul class="icon-list ps-0">
+          <li class="d-flex align-items-start mb-1"><a href="{{path('app_challenge_index')}}" rel="noopener" target="_blank">Match Making</a></li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+{% include 'inc/footer.html.twig' %}
+
+</div>
+
+{% endblock %}
